@@ -713,6 +713,14 @@ final static class DoubleOps extends OpsP{
 		return Double.valueOf(x.doubleValue() + 1);
 	}
 
+  @Override
+  public Number incP(Number x){
+    double val = x.doubleValue();
+    if (val < Double.MAX_VALUE)
+      return num(val + 1);
+    return BIGDECIMAL_OPS.inc(toBigDecimal(x));
+  }
+
 	public Number dec(Number x){
 		return Double.valueOf(x.doubleValue() - 1);
 	}
@@ -1544,10 +1552,6 @@ static public double minusP(double x){
 }
 
 static public double inc(double x){
-	return x + 1;
-}
-
-static public double incP(double x){
 	return x + 1;
 }
 
